@@ -1,0 +1,21 @@
+knapsack problem
+	- Greedy appraoch
+		- try to do what is optimal. 
+		- But it doesnt always give you the best solution
+Complexity Classes (best to worst)
+	- O(1) constant
+		- picking first from list
+	- O(log n) logarithmic
+		- binary search
+	- O(n) linear, geometric progression(how to solve:look this up)
+		- find in unordered list
+	- O(n log n)
+		- quicksort
+	- O(n^2) quadratic
+		- all fist bump with everyone in a group
+	- O(n^3) cubic
+		- matrix multiply
+	- O(2^2) exponential
+		- knapsack Intractable
+	- O(n!) factorial
+		- find all paths

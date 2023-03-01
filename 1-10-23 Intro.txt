@@ -1,0 +1,41 @@
+1 linked list in this project
+	- FIFO Queue
+
+The game will just be stored as an array of <E>
+First Programming assignemnt - Puzzle - JAVA
+	- have board with 8 tile with 1 blank
+	- goal is to get them in order, moving 1 at a time
+	- Use a GENERIC(can use any data type) linked list. THIS IS FOR THE 
+		- Functions:
+			- Add
+				- Always add to the tail
+			- Delete, takes in no parameters but returns the deleted item to check for future moves
+				- Always delete from the head
+			- printContents
+
+	public class LinkedList {
+		int Head
+		Generic<t> Data
+		int tail
+	}
+	-Step two calculate all the possible ways to solve)
+
+	-Step two Solve the board (minimal number of choices
+		- Store the guesses in a FIFO queue
+		- After a move, dont add the opposite move to the queue
+
+2 7 5 
+4 8 3 
+6 0 1 
+
+public class Board 
+{
+	Generic State
+	string Steps
+}
+
+[State 275483601 steps: ]
+[State 275403681 steps: D, State 275483610 steps: L, State 275483061 steps: R]
+[State 275483610 steps: L, State 275483061 steps: R, State 205473681 steps: DD, State 275430681 steps: DL, State 275043681 steps: DR]
+
+We are taking off the first thing. looking for possible more moves, then adding it to the list.

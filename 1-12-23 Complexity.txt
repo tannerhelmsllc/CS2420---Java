@@ -1,0 +1,7 @@
+How does run time depend on problem size?
+	- Run time depends on how we approach the soluction
+		- binary search is Log(n)
+	- Bubble Soart (Move highest element to the end of array in each iteration)
+	- Definition of Big Oh
+		- Time <= C*f(n) whenever n>= n0
+		
