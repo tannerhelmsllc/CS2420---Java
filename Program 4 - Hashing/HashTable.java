@@ -101,18 +101,18 @@ public class HashTable<E>
      */
     private int findPos( E x )
     {
+        this.probesRequired++;
         int offset = 0;
         int currentPos = myhash( x , offset);
-
         while( array[ currentPos ] != null &&
                 !array[ currentPos ].element.equals( x ) )
         {
+            this.probesRequired++;
             offset++;
             currentPos = myhash(x, offset);
             if( currentPos >= array.length )
                 currentPos -= array.length;
         }
-
         return currentPos;
     }
 
@@ -217,9 +217,11 @@ public class HashTable<E>
     {
         int hashVal = x.hashCode( );
 
-        hashVal %= array.length + attempt * hashVal % 7;
-        if( hashVal < 0 )
+        hashVal %= array.length + attempt * hashVal % array.length;
+        while (hashVal < 0) {
             hashVal += array.length;
+        }
+
 
         return hashVal;
     }
@@ -246,6 +248,12 @@ public class HashTable<E>
     private HashEntry<E> [ ] array; // The array of elements
     private int occupiedCt;         // The number of occupied cells: active or deleted
     private int currentActiveEntries;                  // Current size
+    private int probesRequired;
+
+    public int getProbesRequired(){
+        return this.probesRequired;
+    }
+
 
     /**
      * Internal method to allocate array.
