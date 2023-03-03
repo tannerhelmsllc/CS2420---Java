@@ -89,7 +89,7 @@ public class GameStarter {
         System.out.printf("     Items in the table: %d\n", insertions);
         System.out.printf("     Length of the table: %d\n", H.capacity());
         if (!invalidWords.isEmpty()) {
-            System.out.println("Invalid Words");
+            System.out.println("Illegal Words");
         }
         for (String w:invalidWords) {
             System.out.printf("     %s\n", w);
