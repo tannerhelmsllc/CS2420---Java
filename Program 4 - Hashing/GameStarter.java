@@ -2,16 +2,19 @@
 import java.io.*;
 import java.util.*;
 
-public class GameStarter {
+public class GameStarter<E> {
     public GameStarter() {
         H = new HashTable<WordInfo>();
     }
-  
-    public int computeScore(WordInfo word) {
-        return letterScore(word.toString()) * lengthScore(word.toString()) * bonus(word.getTimesUsed());
+    public int computeScore() {
+        int score = 0;
+        for (WordInfo wi: H.getElements()) {
+            score += letterScore(wi.toString()) * lengthScore(wi.toString()) * bonus(wi.getTimesUsed());
+        }
+        return score;
     }
-    public final int[] letterScore = new int[]{1,3,3,2,1,4,2,4,1,8,5,1,3,1,1,3,10,1,1,1,1,4,4,8,4,10};
-    public int bonus(int timesUsed){
+    private final int[] letterScore = new int[]{1,3,3,2,1,4,2,4,1,8,5,1,3,1,1,3,10,1,1,1,1,4,4,8,4,10};
+    private int bonus(int timesUsed){
         if (timesUsed == 0) { return 5;};
         if (timesUsed > 0 && timesUsed < 6) {return 4;};
         if (timesUsed > 5 && timesUsed < 11) {return 3;};
@@ -19,7 +22,7 @@ public class GameStarter {
         return 1;
     }
 
-    public int letterScore(String word) {
+    private int letterScore(String word) {
         int score = 0;
         for (int i = 0; i < word.length(); i++) {
             int sub = word.charAt(i) - 'a';
@@ -28,7 +31,7 @@ public class GameStarter {
         return score;
     }
 
-    public int lengthScore(String word){
+    private int lengthScore(String word){
         int wordLen = word.length();
         if (wordLen < 3){
             return 0;
@@ -46,6 +49,8 @@ public class GameStarter {
             return 6;
         }
     }
+
+
 
     public ArrayList<String> playGame(String filename) {
         ArrayList<String> invalidWords = new ArrayList<String>();
@@ -67,9 +72,7 @@ public class GameStarter {
                 finds++;
                 if (w != null) {
                     w.incTimesUsed();
-                    score += computeScore(w);
                 } else {
-                    score += computeScore(wi);
                     H.insert(wi);
                     insertions++;
                 }
@@ -77,13 +80,14 @@ public class GameStarter {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return invalidWords;
     }
 
 
     public void Print(ArrayList<String> invalidWords) {
         System.out.printf("File: %s\n", this.fileName);
-        System.out.printf("Game Score: %d\n", score);
+        System.out.printf("Game Score: %d\n", computeScore());
         System.out.printf("     Finds: %d\n", finds);
         System.out.printf("     Probes: %d\n", H.getProbesRequired());
         System.out.printf("     Items in the table: %d\n", insertions);

@@ -10,6 +10,8 @@
 // void makeEmpty( )      --> Remove all items
 
 
+import java.util.ArrayList;
+
 /**
  * Probing table implementation of hash tables.
  * Note that all "matching" is based on the equals method.
@@ -253,6 +255,19 @@ public class HashTable<E>
     public int getProbesRequired(){
         return this.probesRequired;
     }
+
+    public ArrayList<E> getElements(){
+        ArrayList<E> ele = new ArrayList<>();
+        for (HashEntry<E> element:this.array) {
+            if (element != null && element.isActive) {
+                ele.add(element.element);
+            }
+        }
+        return ele;
+    }
+
+
+
 
 
     /**
